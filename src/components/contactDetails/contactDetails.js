@@ -13,6 +13,7 @@ const ContactDetails = ({ handleFormData, setOpenModal }) => {
       const [formDetails, setFormDetails] = useState(initialFormData);
       const [msg, setMsg] = useState("");
 
+      // handle change nmethod in input field
       const handleChange = (e) => {
         setFormDetails({
           ...formDetails,
@@ -20,23 +21,22 @@ const ContactDetails = ({ handleFormData, setOpenModal }) => {
         });
       };
     
+      // function to create Contact
       const handleCreateContact = (e) => {
         e.preventDefault();
         console.log("length : "+ formDetails.phoneNumber.length)
         if(formDetails.phoneNumber.length != 10){
            setMsg("phoneNumber is not Valid");    
         }else if(formDetails.status == ""){
-            console.log("aaaaaa: "+formDetails.status)
             setMsg("Status not selected");    
          }else {
             formDetails.id = Date.now() // unique id 
             handleFormData(formDetails);
-            console.log(formDetails);
             setMsg("")
             setOpenModal(false);
-        }
-        
+        } 
       };
+      
 return(
         <div>
             <div className="modalBackground">

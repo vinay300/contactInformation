@@ -20,10 +20,10 @@ const EditContactDetails = ({ data, setModalEditOpen , handleFormData}) => {
         });
       };
     
+      // function to edit contact
       const handleEditContact = (e) => {
         e.preventDefault();
         if((formDetails.phoneNumber.length < 10) && (formDetails.phoneNumber.length > 10)){
-            console.log("length : "+ formDetails.phoneNumber.length)
            errorMsg = "phoneNumber is not Valid";    
         }
         handleFormData(formDetails);
@@ -32,6 +32,7 @@ const EditContactDetails = ({ data, setModalEditOpen , handleFormData}) => {
       };
      var activeflag = (formDetails.status == "active") ? true : false;
      var inactiveflag = (formDetails.status == "inactive") ? true : false;
+
 return(
         <div>
             <div className="modalBackground">
