@@ -2,6 +2,8 @@ import React,{useState} from "react";
 import EditContactDetails from "../contactDetails/editContact";
 import { faPencilAlt, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { confirm } from "react-confirm-box";
+
 
 const TableComponent = ({data, handleUpdateData, handleFormData}) => {
     const [modalEditOpen, setModalEditOpen] = useState(false);
@@ -12,7 +14,7 @@ const TableComponent = ({data, handleUpdateData, handleFormData}) => {
        handleUpdateData(data);
     }
 
-    let handleEditContact = (index) => {
+    let handleEditContact = async (index) => {
       let oData = data.find((item ,i)=> {
             return (i == index)
         });
@@ -20,6 +22,13 @@ const TableComponent = ({data, handleUpdateData, handleFormData}) => {
         setModalEditOpen(true);
     }
 
+    const deleteConfirmation = async (index, options) => {
+        const result = await confirm("Are you sure you want to delete?", options);
+        if (result) {
+            handleDeleteContact(index)
+            return
+        }
+      };
     return (
         <div className="tableContainer">
             {modalEditOpen && <EditContactDetails data={editData} setModalEditOpen={setModalEditOpen} handleFormData={handleFormData}/>}
@@ -42,8 +51,8 @@ const TableComponent = ({data, handleUpdateData, handleFormData}) => {
                         <td>{contact.email}</td>
                         <td>{contact.phoneNumber}</td>
                         <td>{contact.status}</td>
-                        <td><button title="Edit" onClick={handleEditContact.bind(this,index)}><FontAwesomeIcon icon={faPencilAlt}/></button>
-                            <button title="Delete" onClick={handleDeleteContact.bind(this,index)}><FontAwesomeIcon icon={faTrash}/></button>
+                        <td><button className="editButton" title="Edit" onClick={handleEditContact.bind(this,index)}><FontAwesomeIcon icon={faPencilAlt}/></button>
+                            &nbsp;&nbsp;&nbsp;&nbsp;<button className="deleteButton" title="Delete" onClick={deleteConfirmation.bind(this,index)}><FontAwesomeIcon icon={faTrash}/></button>
                         </td>
                     </tr>
                     ))}

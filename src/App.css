@@ -30,6 +30,16 @@
 .tableContainer{
   display: block;
 }
+.tableContainer .editButton{
+  background-color: #5cb85c;
+    color: white;
+}
+
+.tableContainer .deleteButton{
+  background-color: red;
+  color: white;
+}
+
 table {
   /* border-collapse: collapse;
   border-spacing: 0;
@@ -176,15 +186,19 @@ body {
   color: rgb(211, 77, 72);
  }
 
+ .modalContainer .labelPrimary {
+  color: rgb(105, 97, 97);
+ }
+
 .modalContainer .footer button {
-  width: 150px;
-  height: 45px;
+  width: 125px;
+  height: 40px;
   margin: 10px;
   border: none;
   background-color: cornflowerblue;
   color: white;
   border-radius: 8px;
-  font-size: 20px;
+  font-size: 15px;
   cursor: pointer;
 }
 

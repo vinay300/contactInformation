@@ -25,12 +25,17 @@ const ContactDetails = ({ handleFormData, setOpenModal }) => {
         console.log("length : "+ formDetails.phoneNumber.length)
         if(formDetails.phoneNumber.length != 10){
            setMsg("phoneNumber is not Valid");    
-        }else {
+        }else if(formDetails.status == ""){
+            console.log("aaaaaa: "+formDetails.status)
+            setMsg("Status not selected");    
+         }else {
             formDetails.id = Date.now() // unique id 
             handleFormData(formDetails);
             console.log(formDetails);
             setMsg("")
+            setOpenModal(false);
         }
+        
       };
 return(
         <div>
@@ -52,25 +57,25 @@ return(
                     <div className="body">
                         
                             <div>
-                                <label>First Name : </label>
+                                <label>First Name* : </label>
                                 <input type="text" className="inputFields" id="fname" name="firstname" placeholder="First name.." onChange={handleChange} required/>
                             </div>
                             <div>
-                                <label >Last Name : </label>
+                                <label >Last Name* : </label>
                                 <input type="text" className="inputFields" id="lname" name="lastname" placeholder="Last name.." onChange={handleChange} required/>
                             </div>
                             <div>
-                                <label>Email : </label>
+                                <label>Email* : </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="text" className="inputFields" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" name="email" placeholder="Email.." onChange={handleChange} required/>
                             </div>
                             <div>
-                                <label >Phone No : </label>
+                                <label >Phone No* : </label>
                                 <input type="number" className="inputFields" id="phoneNumber" pattern="[6789][0-9]{9}" name="phoneNumber" placeholder="Phone number.." onChange={handleChange} required/>
                             </div>
                             <div>
-                                <label >Status : </label>
+                                <label >Status* : </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="radio" className="inputRadioFields" id="active" name="status" value="active" onChange={handleChange} required/>
-                                <label>Active</label>
+                                <label>Active</label>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="radio" className="inputRadioFields" id="inctive" name="status" value="inactive" onChange={handleChange} required/>
                                 <label >Inactive</label>
                             </div>
@@ -90,6 +95,7 @@ return(
                     </div>
                     </form>
                     <div className='labelError'>{msg}</div>
+                    <div className='labelPrimary'> * Note: all fields are mandatory</div>
                 </div>
             </div>
         </div>

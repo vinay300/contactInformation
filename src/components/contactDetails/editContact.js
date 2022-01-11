@@ -28,7 +28,7 @@ const EditContactDetails = ({ data, setModalEditOpen , handleFormData}) => {
         }
         handleFormData(formDetails);
         setMsg("Updated Successfully...")
-        // console.log(formDetails);
+        setModalEditOpen(false);
       };
      var activeflag = (formDetails.status == "active") ? true : false;
      var inactiveflag = (formDetails.status == "inactive") ? true : false;
@@ -61,7 +61,7 @@ return(
                                 <input type="text" className="inputFields" id="lname" value={formDetails.lastname} name="lastname" placeholder="Last name.." onChange={handleChange} required/>
                             </div>
                             <div>
-                                <label>Email : </label>
+                                <label>Email : </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="text" className="inputFields" pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" value={formDetails.email} pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" id="email" name="email" placeholder="Email.." onChange={handleChange} required/>
                             </div>
                             <div>
@@ -69,9 +69,9 @@ return(
                                 <input type="number" className="inputFields" value={formDetails.phoneNumber} id="phoneNumber" pattern="[6789][0-9]{9}" name="phoneNumber" placeholder="Phone number.." onChange={handleChange} required/>
                             </div>
                             <div>
-                                <label >Status : </label>
+                                <label >Status : </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="radio" className="inputRadioFields" id="active"  name="status" checked={activeflag} value="active" onChange={handleChange} required/>
-                                <label>Active</label>
+                                <label>Active</label>&nbsp;&nbsp;&nbsp;&nbsp;
                                 <input type="radio" className="inputRadioFields" id="inactive" name="status" checked={inactiveflag} value="inactive" onChange={handleChange} required/>
                                 <label >Inactive</label>
                             </div>
